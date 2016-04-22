@@ -1,0 +1,19 @@
+{% extends 'github_app/base.html' %}
+
+{% block content %}
+        <form action="/" method="post">
+   		{% csrf_token %}
+        <input type="text" name="screen_name" placeholder='Github Username'>
+        <input type="number" name="count" placeholder='Number of repos to retrieve'>
+        <input type="submit" value="Get Repos">
+        </form>
+        {% if repos %}
+            <h2>Repositories of {{user}}</h2><br>
+            {% for repo in repos %}
+            <div class="post">
+                <a href= {{repo.html_url}}>{{repo.name}}</a>
+            </div>
+            {% endfor %}        
+        {% endif %}
+
+{% endblock %}
